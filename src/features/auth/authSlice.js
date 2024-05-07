@@ -1,10 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import apiClient from "../../services/api-client";
 import authService from "./authService";
 
 const localUser = createAsyncThunk("user", async () => {
   try {
-    const response = await apiClient.get("/user");
+    const response = await authService.getLocalUser();
     return response.data;
   } catch (err) {
     return null; // Return null in case of error
@@ -96,4 +95,9 @@ export const authSlice = createSlice({
 });
 
 export const { reset } = authSlice.actions;
+
+export const initializeApp = () => (dispatch) => {
+  dispatch(localUser());
+};
+
 export default authSlice.reducer;
