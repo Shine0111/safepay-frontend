@@ -1,12 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaSignInAlt } from "react-icons/fa";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { login, reset } from "../features/auth/authSlice";
+import { Spinner } from "./index";
 
 function Login() {
   const [formData, setFormData] = useState({
-    email: "",
+    name: "",
     password: "",
   });
-  const { email, password } = formData;
+  const { name, password } = formData;
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const { user, isLoading, isError, isSuccess, message } = useSelector(
+    (state) => state.auth
+  );
+
+  useEffect(() => {
+    if (isError) toast.error(message);
+    if (isSuccess || user) navigate("/");
+    dispatch(reset());
+  }, [user, isError, isSuccess, message, navigate, dispatch]);
+
   const onChange = (e) => {
     setFormData((prevState) => ({
       ...prevState,
@@ -16,9 +35,13 @@ function Login() {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    const userData = { name, password };
+    dispatch(login(userData));
   };
 
-  return (
+  return isLoading ? (
+    <Spinner />
+  ) : (
     <>
       <section className="form heading">
         <h1>
@@ -30,11 +53,12 @@ function Login() {
         <form onSubmit={onSubmit}>
           <div className="form-group">
             <input
-              type="email"
+              type="name"
               className="form-control"
-              id="email"
-              value={email}
-              placeholder="Your email here"
+              id="name"
+              name="name"
+              value={name}
+              placeholder="Your name here"
               onChange={onChange}
             />
           </div>
@@ -43,6 +67,7 @@ function Login() {
               type="password"
               className="form-control"
               id="password"
+              name="password"
               value={password}
               placeholder="Your password here"
               onChange={onChange}

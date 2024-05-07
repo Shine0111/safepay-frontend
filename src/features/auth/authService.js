@@ -1,9 +1,9 @@
 import apiClient from "../../services/api-client";
 
-const API_URL = "/user/register";
+const API_URL = "/user/";
 
 const register = async (userData) => {
-  const response = await apiClient.post(API_URL, {
+  const response = await apiClient.post(API_URL + "register", {
     uname: userData.name,
     email: userData.email,
     pw: userData.password,
@@ -13,6 +13,16 @@ const register = async (userData) => {
   return response.data;
 };
 
-const authService = { register };
+const login = async (userData) => {
+  const response = await apiClient.post(API_URL + "login", {
+    uname: userData.name,
+    pw: userData.password,
+  });
+  if (response.data) {
+  }
+  return response.data;
+};
+
+const authService = { register, login };
 
 export default authService;
