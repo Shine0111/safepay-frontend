@@ -24,7 +24,7 @@ function Register() {
 
   useEffect(() => {
     if (isError) toast.error(message);
-    if (isSuccess || user) navigate("/");
+    if (isSuccess || user) navigate("/login");
     dispatch(reset());
   }, [user, isError, isSuccess, message, navigate, dispatch]);
 

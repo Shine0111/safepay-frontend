@@ -23,11 +23,15 @@ const login = async (userData) => {
   return response.data;
 };
 
+const logout = async () => {
+  await apiClient.get(API_URL + "logout");
+};
+
 const getLocalUser = async () => {
   const response = await apiClient.get(API_URL);
   return response.data;
 };
 
-const authService = { register, login, getLocalUser };
+const authService = { register, login, logout, getLocalUser };
 
 export default authService;
