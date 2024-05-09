@@ -6,5 +6,11 @@ const createProduct = async (productData) => {
   const response = await apiClient.post(API_URL, productData);
   return response.data;
 };
-const productService = { createProduct };
+
+const getProducts = async () => {
+  const response = await apiClient.get(API_URL);
+  return response.data;
+};
+
+const productService = { createProduct, getProducts };
 export default productService;
