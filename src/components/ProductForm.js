@@ -24,13 +24,17 @@ function ProductForm() {
       e.preventDefault();
       const productData = { name };
       dispatch(createProduct(productData));
-      navigate("/allProducts");
-      toast.success("Product Created!", {
-        autoClose: 2000,
-      });
+      setTimeout(() => {
+        navigate("/allProducts");
+      }, 2000);
+      toast.success(
+        "Product Created! You'are being redirected to all your Products",
+        {
+          autoClose: 2000,
+        }
+      );
     } catch (error) {
       console.error("Error navigating:", error);
-      // Handle error gracefully, e.g., display a toast message
       toast.error("Error navigating: " + error.message);
     }
   };

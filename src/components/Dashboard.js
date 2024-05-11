@@ -14,7 +14,7 @@ function Dashboard() {
   return (
     <div className="container">
       <section className="heading">
-        <h1>Welcome {user && user.user.name}</h1>
+        <h1>Welcome {user && user.name}</h1>
         <div style={{ display: "flex", justifyContent: "center" }}>
           <button className="btn" onClick={() => navigate("/allProducts")}>
             Check my Products
