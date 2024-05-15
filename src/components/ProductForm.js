@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { createProduct } from "../features/products/productSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
@@ -12,6 +12,8 @@ function ProductForm() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const { isLoading, isSuccess } = useSelector((state) => state.products);
+
   const onChange = (e) => {
     setProduct((prevState) => ({
       ...prevState,
@@ -20,22 +22,14 @@ function ProductForm() {
   };
 
   const onSubmit = async (e) => {
-    try {
-      e.preventDefault();
-      const productData = { name };
-      dispatch(createProduct(productData));
-      setTimeout(() => {
-        navigate("/allProducts");
-      }, 2000);
-      toast.success(
-        "Product Created! You'are being redirected to all your Products",
-        {
-          autoClose: 2000,
-        }
-      );
-    } catch (error) {
-      console.error("Error navigating:", error);
-      toast.error("Error navigating: " + error.message);
+    e.preventDefault();
+    const productData = { name };
+    dispatch(createProduct(productData));
+    navigate("/allProducts");
+    if (!isLoading && isSuccess) {
+      toast.success("Product Created!", {
+        autoClose: 2000,
+      });
     }
   };
 

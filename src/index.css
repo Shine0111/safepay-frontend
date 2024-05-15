@@ -7,7 +7,7 @@
 }
 
 body {
-  font-family: 'Karla', sans-serif;
+  font-family: "Karla", sans-serif;
   height: 100vh;
 }
 
@@ -87,15 +87,18 @@ h3 {
 }
 
 .goals {
-  display: grid;
-  grid-template-columns: repeat(1, 2fr);
-  gap: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3%;
 }
 
 .goal {
   background-color: #f4f4f4;
+  width: 20%;
   margin: 10px 0;
   padding: 20px 10px;
+  border-radius: 1rem;
   position: relative;
 }
 
@@ -211,6 +214,6 @@ h3 {
   }
 
   .heading p {
-    font-size: 1.5rem
+    font-size: 1.5rem;
   }
 }

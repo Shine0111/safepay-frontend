@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import ProductForm from "./ProductForm";
 
 function Dashboard() {
   const navigate = useNavigate();
@@ -21,7 +20,11 @@ function Dashboard() {
           </button>
         </div>
       </section>
-      <ProductForm />
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <button className="btn" onClick={() => navigate("/addProduct")}>
+          Create a Product
+        </button>
+      </div>
     </div>
   );
 }

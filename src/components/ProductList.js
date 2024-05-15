@@ -1,12 +1,16 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts, reset } from "../features/products/productSlice";
+import {
+  getProducts,
+  deleteProduct,
+  reset,
+} from "../features/products/productSlice";
 import Spinner from "./Spinner";
 import ProductItem from "./ProductItem";
 
 function ProductList() {
   const dispatch = useDispatch();
-  const { products, isLoading, isSuccess, isError, message } = useSelector(
+  const { products, isLoading, isError, message } = useSelector(
     (state) => state.products
   );
 
@@ -20,19 +24,23 @@ function ProductList() {
     <Spinner />
   ) : (
     <>
-      {isSuccess && (
-        <section className="content">
-          {products.products.length > 0 ? (
-            <div className="tasks">
-              {products.products.map((product) => (
-                <ProductItem key={product._id} product={product} />
+      <section className="container">
+        {products.length > 0 && (
+          <div className="goals">
+            {products &&
+              products.map((product) => (
+                <ProductItem
+                  key={product._id}
+                  product={product}
+                  onDelete={() => {
+                    dispatch(deleteProduct(product._id));
+                    dispatch(getProducts());
+                  }}
+                />
               ))}
-            </div>
-          ) : (
-            <div>No products found</div>
-          )}
-        </section>
-      )}
+          </div>
+        )}
+      </section>
     </>
   );
 }
