@@ -22,6 +22,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/addProduct" element={<ProductForm />} />
         <Route path="/allProducts" element={<ProductList />} />
+        <Route path="/addProduct" element={<ProductForm />} />
       </Routes>
       <ToastContainer />
     </div>
