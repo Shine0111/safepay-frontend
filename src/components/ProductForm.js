@@ -26,7 +26,7 @@ function ProductForm() {
       dispatch(createProduct(productData));
       setTimeout(() => {
         navigate("/allProducts");
-      }, 2000);
+      }, 1000);
       toast.success(
         "Product Created! You'are being redirected to all your Products",
         {
