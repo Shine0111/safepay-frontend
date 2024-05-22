@@ -19,12 +19,12 @@ function Dashboard() {
             Check my Products
           </button>
         </div>
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <button className="btn" onClick={() => navigate("/addProduct")}>
-            Create a new Product
-          </button>
-        </div>
       </section>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <button className="btn" onClick={() => navigate("/addProduct")}>
+          Create a new Product
+        </button>
+      </div>
     </div>
   );
 }

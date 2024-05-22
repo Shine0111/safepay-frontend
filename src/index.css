@@ -93,22 +93,66 @@ h3 {
   gap: 3%;
 }
 
-.goal {
-  background-color: #f4f4f4;
-  width: 20%;
-  margin: 10px 0;
-  padding: 20px 10px;
-  border-radius: 1rem;
-  position: relative;
+.product-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 300px;
+  margin: 10px;
+  transition: transform 0.2s;
+  position: relative; /* Add this line */
 }
 
-.goal .close {
+.product-card:hover {
+  transform: scale(1.05);
+}
+
+.product-image-container {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.product-image-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-details {
+  padding: 15px;
+}
+
+.product-date {
+  color: #777;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.product-name {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+}
+
+.delete-button {
+  background-color: #ff4d4d;
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
   position: absolute;
   top: 10px;
-  right: 15px;
-  cursor: pointer;
-  border: none;
-  background: none;
+  right: 10px;
+}
+
+.delete-button:hover {
+  background-color: #ff1a1a;
 }
 
 .form,
@@ -136,6 +180,10 @@ h3 {
   text-align: left;
   display: block;
   margin: 5px 0 0px 3px;
+}
+
+.product-image-cover {
+  object-fit: cover;
 }
 
 .btn {
