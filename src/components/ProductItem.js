@@ -24,6 +24,8 @@ function ProductItem({ product, onDelete }) {
           {new Date(product.createdAt).toLocaleString("en-US")}
         </div>
         <h2 className="product-name">{product.name}</h2>
+        <p>{product.description}</p>
+        <p>{product.summary}</p>
         <button className="delete-button" onClick={onDelete}>
           X
         </button>

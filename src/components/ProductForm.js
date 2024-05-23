@@ -7,34 +7,49 @@ import { useNavigate } from "react-router-dom";
 function ProductForm() {
   const [product, setProduct] = useState({
     name: "",
+    description: "",
+    summary: "",
     images: [],
   });
-  const { name, images } = product;
+  const { name, description, summary, images } = product;
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const { isLoading, isSuccess } = useSelector((state) => state.products);
 
-  const onChange = (e) => {
-    if (e.target.name === "images") {
-      setProduct((prevState) => ({
-        ...prevState,
-        images: e.target.files,
-      }));
-    } else {
-      setProduct((prevState) => ({
-        ...prevState,
-        [e.target.name]: e.target.value,
-      }));
-    }
+  const handleNameChange = (e) => {
+    setProduct((prevState) => ({
+      ...prevState,
+      name: e.target.value,
+    }));
+  };
+  const handleDescriptionChange = (e) => {
+    setProduct((prevState) => ({
+      ...prevState,
+      description: e.target.value,
+    }));
+  };
+  const handleSummaryChange = (e) => {
+    setProduct((prevState) => ({
+      ...prevState,
+      summary: e.target.value,
+    }));
+  };
+  const handleImagesChange = (e) => {
+    setProduct((prevState) => ({
+      ...prevState,
+      images: e.target.files,
+    }));
   };
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    const productData = { name, images };
+    const productData = { name, images, description, summary };
 
     const formData = new FormData();
     formData.append("name", productData.name);
+    formData.append("description", productData.description);
+    formData.append("summary", productData.summary);
     for (let i = 0; i < productData.images.length; i++) {
       formData.append("images", product.images[i]);
     }
@@ -61,7 +76,36 @@ function ProductForm() {
             id="name"
             name="name"
             value={name}
-            onChange={onChange}
+            onChange={handleNameChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="text" style={{ fontWeight: "bolder" }}>
+            Product description:
+          </label>
+
+          <input
+            type="text"
+            id="description"
+            name="description"
+            value={description}
+            onChange={handleDescriptionChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="text" style={{ fontWeight: "bolder" }}>
+            Product summary:
+          </label>
+
+          <input
+            type="text"
+            id="summary"
+            name="summary"
+            value={summary}
+            onChange={handleSummaryChange}
+            required
           />
         </div>
         <div className="form-group">
@@ -75,7 +119,7 @@ function ProductForm() {
             name="images"
             accept="images/*"
             multiple
-            onChange={onChange}
+            onChange={handleImagesChange}
           />
         </div>
 
