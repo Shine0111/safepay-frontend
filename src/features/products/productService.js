@@ -21,5 +21,21 @@ const deleteProduct = async (id) => {
   return response.data;
 };
 
-const productService = { createProduct, getProducts, deleteProduct };
+const getProductCategories = async () => {
+  const response = await apiClient.get(API_URL + "categories");
+  return response.data;
+};
+
+const getProductSubCategories = async () => {
+  const response = await apiClient.get(API_URL + "sub-categories");
+  return response.data;
+};
+
+const productService = {
+  getProductCategories,
+  getProductSubCategories,
+  createProduct,
+  getProducts,
+  deleteProduct,
+};
 export default productService;

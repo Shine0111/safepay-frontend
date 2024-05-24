@@ -3,11 +3,47 @@ import productService from "./productService";
 
 const initialState = {
   products: [],
+  categories: [],
+  subCategories: [],
   isError: false,
   isSuccess: false,
   isLoading: false,
   message: "",
 };
+
+export const getProductCategories = createAsyncThunk(
+  "products/categories",
+  async (_, thunkAPI) => {
+    try {
+      return await productService.getProductCategories();
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+export const getProductSubCategories = createAsyncThunk(
+  "products/sub-categories",
+  async (_, thunkAPI) => {
+    try {
+      return await productService.getProductSubCategories();
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
 
 export const createProduct = createAsyncThunk(
   "products/create",
@@ -107,6 +143,32 @@ export const productSlice = createSlice({
       .addCase(deleteProduct.rejected, (state, action) => {
         state.isError = true;
         state.isLoading = false;
+        state.message = action.payload;
+      })
+      .addCase(getProductCategories.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getProductCategories.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.categories = action.payload;
+      })
+      .addCase(getProductCategories.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(getProductSubCategories.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getProductSubCategories.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.subCategories = action.payload;
+      })
+      .addCase(getProductSubCategories.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
         state.message = action.payload;
       });
   },

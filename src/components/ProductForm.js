@@ -10,12 +10,15 @@ function ProductForm() {
     description: "",
     summary: "",
     images: [],
+    subCategory: "",
   });
-  const { name, description, summary, images } = product;
+  const { name, description, summary, images, subCategory } = product;
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { isLoading, isSuccess } = useSelector((state) => state.products);
+  const { isLoading, isSuccess, subCategories } = useSelector(
+    (state) => state.products
+  );
 
   const handleNameChange = (e) => {
     setProduct((prevState) => ({
@@ -42,14 +45,22 @@ function ProductForm() {
     }));
   };
 
+  const handleSubCategoryChange = (e) => {
+    setProduct((prevState) => ({
+      ...prevState,
+      subCategory: e.target.value,
+    }));
+  };
+
   const onSubmit = async (e) => {
     e.preventDefault();
-    const productData = { name, images, description, summary };
+    const productData = { name, images, description, summary, subCategory };
 
     const formData = new FormData();
     formData.append("name", productData.name);
     formData.append("description", productData.description);
     formData.append("summary", productData.summary);
+    formData.append("subCategory", productData.subCategory);
     for (let i = 0; i < productData.images.length; i++) {
       formData.append("images", product.images[i]);
     }
@@ -121,6 +132,23 @@ function ProductForm() {
             multiple
             onChange={handleImagesChange}
           />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="subCategory">SubCategory:</label>
+          <select
+            id="subCategory"
+            name="subCategory"
+            value={product.subCategory}
+            onChange={handleSubCategoryChange}
+          >
+            <option value="">Select SubCategory</option>
+            {subCategories.map((subCategory) => (
+              <option key={subCategory._id} value={subCategory._id}>
+                {subCategory.name}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div className="form-group">
