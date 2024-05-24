@@ -135,14 +135,15 @@ function ProductForm() {
         </div>
 
         <div className="form-group">
-          <label htmlFor="subCategory">SubCategory:</label>
+          <label htmlFor="subCategory" style={{ fontWeight: "bolder" }}>
+            Your Product category:
+          </label>
           <select
             id="subCategory"
             name="subCategory"
             value={product.subCategory}
             onChange={handleSubCategoryChange}
           >
-            <option value="">Select SubCategory</option>
             {subCategories.map((subCategory) => (
               <option key={subCategory._id} value={subCategory._id}>
                 {subCategory.name}
