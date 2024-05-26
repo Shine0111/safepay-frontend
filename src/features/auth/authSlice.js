@@ -1,9 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import authService from "./authService";
-import {
-  getProductCategories,
-  getProductSubCategories,
-} from "../products/productSlice";
 
 const localUser = createAsyncThunk("auth/localUser", async (thunkAPI) => {
   try {
@@ -123,8 +119,6 @@ export const { reset } = authSlice.actions;
 
 export const initializeApp = () => (dispatch) => {
   dispatch(localUser());
-  dispatch(getProductCategories());
-  dispatch(getProductSubCategories());
 };
 
 export default authSlice.reducer;

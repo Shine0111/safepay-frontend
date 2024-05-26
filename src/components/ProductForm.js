@@ -1,8 +1,13 @@
-import React, { useState } from "react";
-import { createProduct } from "../features/products/productSlice";
+import React, { useEffect, useState } from "react";
+import {
+  createProduct,
+  getProductCategories,
+  getProductSubCategories,
+} from "../features/products/productSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import Spinner from "./Spinner";
 
 function ProductForm() {
   const [product, setProduct] = useState({
@@ -19,6 +24,11 @@ function ProductForm() {
   const { isLoading, isSuccess, subCategories } = useSelector(
     (state) => state.products
   );
+
+  useEffect(() => {
+    dispatch(getProductCategories());
+    dispatch(getProductSubCategories());
+  }, [dispatch]);
 
   const handleNameChange = (e) => {
     setProduct((prevState) => ({
@@ -134,23 +144,29 @@ function ProductForm() {
           />
         </div>
 
-        <div className="form-group">
-          <label htmlFor="subCategory" style={{ fontWeight: "bolder" }}>
-            Your Product category:
-          </label>
-          <select
-            id="subCategory"
-            name="subCategory"
-            value={product.subCategory}
-            onChange={handleSubCategoryChange}
-          >
-            {subCategories.map((subCategory) => (
-              <option key={subCategory._id} value={subCategory._id}>
-                {subCategory.name}
-              </option>
-            ))}
-          </select>
-        </div>
+        {isLoading ? (
+          <div>
+            <Spinner />
+          </div>
+        ) : (
+          <div className="form-group">
+            <label htmlFor="subCategory" style={{ fontWeight: "bolder" }}>
+              Your Product category:
+            </label>
+            <select
+              id="subCategory"
+              name="subCategory"
+              value={product.subCategory}
+              onChange={handleSubCategoryChange}
+            >
+              {subCategories.map((subCategory) => (
+                <option key={subCategory._id} value={subCategory._id}>
+                  {subCategory.name}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
 
         <div className="form-group">
           <button className="btn btn-block" type="submit">
