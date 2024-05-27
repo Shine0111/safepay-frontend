@@ -21,11 +21,18 @@ function Header() {
       </div>
       <ul>
         {user ? (
-          <li>
-            <button className="btn" onClick={logoutFn}>
-              <FaSignOutAlt /> Logout
-            </button>
-          </li>
+          <>
+            <li>
+              <button className="btn" onClick={logoutFn}>
+                <FaSignOutAlt /> Logout
+              </button>
+            </li>
+            <li>
+              <button className="btn" onClick={() => navigate("/dashboard")}>
+                Dashboard
+              </button>
+            </li>
+          </>
         ) : (
           <>
             <li>

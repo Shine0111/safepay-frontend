@@ -6,7 +6,9 @@ import Spinner from "./Spinner";
 import ProductForm from "./ProductForm";
 import ProductList from "./ProductList";
 import ProductItem from "./ProductItem";
+import Home from "./Home";
 export {
+  Home,
   Dashboard,
   Login,
   Register,
