@@ -48,7 +48,7 @@ function Register() {
   return isLoading ? (
     <Spinner />
   ) : (
-    <>
+    <div className="container">
       <section className="form heading">
         <h1>
           <FaUser /> Register{" "}
@@ -109,7 +109,7 @@ function Register() {
           </div>
         </form>
       </section>
-    </>
+    </div>
   );
 }
 

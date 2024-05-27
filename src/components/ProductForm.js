@@ -84,7 +84,7 @@ function ProductForm() {
   };
 
   return (
-    <section className="form">
+    <section className="form container">
       <form onSubmit={onSubmit}>
         <div className="form-group">
           <label htmlFor="text" style={{ fontWeight: "bolder" }}>

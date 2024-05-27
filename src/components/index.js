@@ -7,6 +7,7 @@ import ProductForm from "./ProductForm";
 import ProductList from "./ProductList";
 import ProductItem from "./ProductItem";
 import Home from "./Home";
+import SearchBar from "./SearchBar";
 export {
   Home,
   Dashboard,
@@ -17,4 +18,5 @@ export {
   ProductList,
   ProductItem,
   Spinner,
+  SearchBar,
 };

@@ -3,6 +3,8 @@ import { FaSignInAlt, FaSignOutAlt, FaUser } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout, reset } from "../features/auth/authSlice";
+import SearchBar from "./SearchBar";
+
 function Header() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -15,11 +17,14 @@ function Header() {
   };
 
   return (
-    <header className="header container">
+    <header className="header">
       <div className="logo">
         <Link to="/">SafePay</Link>
       </div>
       <ul>
+        <li>
+          <SearchBar />
+        </li>
         {user ? (
           <>
             <li>

@@ -48,7 +48,9 @@ h3 {
   justify-content: space-between;
   align-items: center;
   padding: 20px 0;
+  max-width: 960px;
   border-bottom: 1px solid #e6e6e6;
+  margin: 0 auto;
   margin-bottom: 60px;
 }
 
@@ -264,4 +266,23 @@ h3 {
   .heading p {
     font-size: 1.5rem;
   }
+}
+.flex-row {
+  display: "flex";
+  flex-direction: "column";
+  gap: 2;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  padding: 12px 16px;
+  z-index: 1;
 }

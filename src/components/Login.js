@@ -42,7 +42,7 @@ function Login() {
   return isLoading ? (
     <Spinner />
   ) : (
-    <>
+    <div className="container">
       <section className="form heading">
         <h1>
           <FaSignInAlt /> Login{" "}
@@ -81,7 +81,7 @@ function Login() {
           </div>
         </form>
       </section>
-    </>
+    </div>
   );
 }
 
