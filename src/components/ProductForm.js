@@ -10,20 +10,19 @@ import { useNavigate } from "react-router-dom";
 import Spinner from "./Spinner";
 
 function ProductForm() {
+  const { isLoading, isSuccess, subCategories } = useSelector(
+    (state) => state.products
+  );
   const [product, setProduct] = useState({
     name: "",
     description: "",
     summary: "",
     images: [],
-    subCategory: "",
+    subCategory: subCategories.length > 0 ? subCategories[0]._id : "",
   });
   const { name, description, summary, images, subCategory } = product;
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
-  const { isLoading, isSuccess, subCategories } = useSelector(
-    (state) => state.products
-  );
 
   useEffect(() => {
     dispatch(getProductCategories());
