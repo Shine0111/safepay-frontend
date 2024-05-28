@@ -8,6 +8,7 @@ import ProductList from "./ProductList";
 import ProductItem from "./ProductItem";
 import Home from "./Home";
 import SearchBar from "./SearchBar";
+import SearchResults from "./SearchResults";
 export {
   Home,
   Dashboard,
@@ -19,4 +20,5 @@ export {
   ProductItem,
   Spinner,
   SearchBar,
+  SearchResults,
 };

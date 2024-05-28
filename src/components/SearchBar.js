@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import apiClient from "../services/api-client";
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 
 function SearchBar() {
   const [liveSearchResults, setLiveSearchResults] = useState([]);
@@ -19,7 +20,9 @@ function SearchBar() {
 
     try {
       setIsLoading(true);
-      const response = await apiClient.get(`/api/products/search?q=${query}`);
+      const response = await apiClient.get(
+        `/api/products/live-search?q=${query}`
+      );
       setLiveSearchResults(response.data);
     } catch (error) {
       console.error("Error fetching search results:", error);
@@ -65,7 +68,13 @@ function SearchBar() {
         <div className="dropdown-content flex-row" ref={dropdownRef}>
           {isLoading && <li>Loading...</li>}
           {liveSearchResults.map((result) => (
-            <div key={result._id}>{result.name}</div>
+            <Link
+              key={result._id}
+              to={`/search-results/${result._id}`}
+              onClick={() => setLiveSearchResults([])}
+            >
+              {result.name}
+            </Link>
           ))}
         </div>
       )}
