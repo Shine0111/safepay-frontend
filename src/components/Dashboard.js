@@ -1,31 +1,33 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import {
+  Box,
+  createTheme,
+  CssBaseline,
+  ThemeProvider,
+  useMediaQuery,
+} from "@mui/material";
+import DashboardDrawer from "./DashboardDrawer";
+
+const theme = createTheme();
 
 function Dashboard() {
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.auth);
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   useEffect(() => {
     if (!user) navigate("/login");
   }, [user, navigate]);
 
   return (
-    <div className="container">
-      <section className="heading">
-        <h1>Welcome {user && user.name}</h1>
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <button className="btn" onClick={() => navigate("/allProducts")}>
-            Check my Products
-          </button>
-        </div>
-      </section>
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <button className="btn" onClick={() => navigate("/addProduct")}>
-          Create a new Product
-        </button>
-      </div>
-    </div>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Box sx={{ display: "flex" }}>
+        <DashboardDrawer isMobile={isMobile} />
+      </Box>
+    </ThemeProvider>
   );
 }
 
