@@ -18,7 +18,7 @@ function ProductForm() {
     description: "",
     summary: "",
     images: [],
-    subCategory: subCategories.length > 0 ? subCategories[0]._id : "",
+    subCategory: "",
   });
   const { name, description, summary, images, subCategory } = product;
   const navigate = useNavigate();
@@ -158,6 +158,7 @@ function ProductForm() {
               value={product.subCategory}
               onChange={handleSubCategoryChange}
             >
+              <option>Select a category</option>
               {subCategories.map((subCategory) => (
                 <option key={subCategory._id} value={subCategory._id}>
                   {subCategory.name}
