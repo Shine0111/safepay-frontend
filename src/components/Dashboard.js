@@ -16,6 +16,7 @@ const Dashboard = ({ children }) => {
     setIsOpen(!isOpen);
   };
 
+  // Open sidebar on big screens
   useEffect(() => {
     width > 764 ? setIsOpen(true) : setIsOpen(false);
   }, [width]);
@@ -45,10 +46,10 @@ const Dashboard = ({ children }) => {
               ☰
             </button>
           </li>
-          <li onClick={toggleSidebar}>
+          <li onClick={width < 764 ? toggleSidebar : null}>
             <Link to="allProducts">All Products</Link>
           </li>
-          <li onClick={toggleSidebar}>
+          <li onClick={width < 764 ? toggleSidebar : null}>
             <Link to="addProduct">Add Product</Link>
           </li>
         </ul>
