@@ -75,7 +75,7 @@ function ProductForm() {
     }
 
     dispatch(createProduct(formData));
-    navigate("/allProducts");
+    navigate("/dashboard/allProducts");
     if (!isLoading && isSuccess) {
       toast.success("Product Created!", {
         autoClose: 2000,

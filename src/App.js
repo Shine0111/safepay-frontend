@@ -20,12 +20,12 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard" element={<Dashboard />}>
+          <Route path="allProducts" element={<ProductList />} />
+          <Route path="addProduct" element={<ProductForm />} />
+        </Route>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/addProduct" element={<ProductForm />} />
-        <Route path="/allProducts" element={<ProductList />} />
-        <Route path="/addProduct" element={<ProductForm />} />
         <Route
           path="/search-results/:category_id"
           element={<SearchResults />}

@@ -37,7 +37,7 @@ h3 {
 
 .container {
   width: 100%;
-  max-width: 960px;
+  max-width: 100%;
   margin: 0 auto;
   padding: 20px 0;
   text-align: center;
@@ -48,10 +48,14 @@ h3 {
   justify-content: space-between;
   align-items: center;
   padding: 20px 0;
-  max-width: 960px;
+  max-width: 100%;
   border-bottom: 1px solid #e6e6e6;
   margin: 0 auto;
   margin-bottom: 60px;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 1000;
 }
 
 .header ul {
@@ -103,7 +107,8 @@ h3 {
   width: 300px;
   margin: 10px;
   transition: transform 0.2s;
-  position: relative; /* Add this line */
+  position: relative;
+  /* Add this line */
 }
 
 .product-card:hover {
@@ -267,6 +272,7 @@ h3 {
     font-size: 1.5rem;
   }
 }
+
 .flex-row {
   display: "flex";
   flex-direction: "column";
