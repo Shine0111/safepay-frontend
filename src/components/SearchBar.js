@@ -5,7 +5,10 @@ import { useRef } from "react";
 import { Link } from "react-router-dom";
 
 function SearchBar() {
-  const [liveSearchResults, setLiveSearchResults] = useState([]);
+  const [liveSearchResults, setLiveSearchResults] = useState({
+    categoryResults: [],
+    nameResults: [],
+  });
   const [isLoading, setIsLoading] = useState(false);
 
   const dropdownRef = useRef(null);
@@ -14,7 +17,10 @@ function SearchBar() {
     const query = e.target.value;
 
     if (query.trim() === "") {
-      setLiveSearchResults([]);
+      setLiveSearchResults({
+        categoryResults: [],
+        nameResults: [],
+      });
       return;
     }
 
@@ -23,7 +29,10 @@ function SearchBar() {
       const response = await apiClient.get(
         `/api/products/live-search?q=${query}`
       );
-      setLiveSearchResults(response.data);
+      setLiveSearchResults(() => ({
+        categoryResults: response.data.subCategories,
+        nameResults: response.data.productNames,
+      }));
     } catch (error) {
       console.error("Error fetching search results:", error);
     } finally {
@@ -36,7 +45,10 @@ function SearchBar() {
   useEffect(() => {
     function handleClickOutside(e) {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
-        setLiveSearchResults([]);
+        setLiveSearchResults({
+          categoryResults: [],
+          nameResults: [],
+        });
       }
     }
     document.addEventListener("click", handleClickOutside);
@@ -64,20 +76,42 @@ function SearchBar() {
         </button>
       </form>
 
-      {liveSearchResults.length > 0 && (
-        <div className="dropdown-content flex-row" ref={dropdownRef}>
-          {isLoading && <li>Loading...</li>}
-          {liveSearchResults.map((result) => (
-            <Link
-              key={result._id}
-              to={`/search-results/${result._id}`}
-              onClick={() => setLiveSearchResults([])}
-            >
-              {result.name}
-            </Link>
-          ))}
-        </div>
-      )}
+      {liveSearchResults.categoryResults.length > 0 ||
+        (liveSearchResults.nameResults.length > 0 && (
+          <div className="dropdown-content flex-row" ref={dropdownRef}>
+            {isLoading && <li>Loading...</li>}
+            <h4>Categories</h4>
+            {liveSearchResults.categoryResults.map((result) => (
+              <Link
+                key={result._id}
+                to={`/search-results/${result._id}`}
+                onClick={() =>
+                  setLiveSearchResults({
+                    categoryResults: [],
+                    nameResults: [],
+                  })
+                }
+              >
+                {result.name}
+              </Link>
+            ))}
+            <h4>Products</h4>
+            {liveSearchResults.nameResults.map((result) => (
+              <Link
+                key={result._id}
+                to={`/search-results/${result._id}`}
+                onClick={() =>
+                  setLiveSearchResults({
+                    categoryResults: [],
+                    nameResults: [],
+                  })
+                }
+              >
+                {result.name}
+              </Link>
+            ))}
+          </div>
+        ))}
     </div>
   );
 }
