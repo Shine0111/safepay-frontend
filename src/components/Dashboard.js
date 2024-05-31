@@ -65,8 +65,8 @@ const Dashboard = ({ children }) => {
           ☰
         </button>
         {children}
+        <Outlet />
       </div>
-      <Outlet />
     </div>
   );
 };
