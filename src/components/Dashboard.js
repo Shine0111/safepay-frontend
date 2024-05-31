@@ -10,6 +10,8 @@ const Dashboard = ({ children }) => {
   const { user } = useSelector((state) => state.auth);
   const navigate = useNavigate();
 
+  const SIDEBAR_BREAKPOINT = 1024;
+
   const backdropRef = useRef(null);
 
   const toggleSidebar = () => {
@@ -18,7 +20,7 @@ const Dashboard = ({ children }) => {
 
   // Open sidebar on big screens
   useEffect(() => {
-    width > 764 ? setIsOpen(true) : setIsOpen(false);
+    width > SIDEBAR_BREAKPOINT ? setIsOpen(true) : setIsOpen(false);
   }, [width]);
 
   useEffect(() => {
@@ -46,15 +48,15 @@ const Dashboard = ({ children }) => {
               ☰
             </button>
           </li>
-          <li onClick={width < 764 ? toggleSidebar : null}>
+          <li onClick={width < SIDEBAR_BREAKPOINT ? toggleSidebar : null}>
             <Link to="allProducts">All Products</Link>
           </li>
-          <li onClick={width < 764 ? toggleSidebar : null}>
+          <li onClick={width < SIDEBAR_BREAKPOINT ? toggleSidebar : null}>
             <Link to="addProduct">Add Product</Link>
           </li>
         </ul>
       </div>
-      {isOpen && width < 764 && (
+      {isOpen && width < SIDEBAR_BREAKPOINT && (
         <div className={styles.backdrop} ref={backdropRef}></div>
       )}
 
