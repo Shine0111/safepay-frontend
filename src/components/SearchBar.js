@@ -76,42 +76,42 @@ function SearchBar() {
         </button>
       </form>
 
-      {liveSearchResults.categoryResults.length > 0 ||
-        (liveSearchResults.nameResults.length > 0 && (
-          <div className="dropdown-content flex-row" ref={dropdownRef}>
-            {isLoading && <li>Loading...</li>}
-            <h4>Categories</h4>
-            {liveSearchResults.categoryResults.map((result) => (
-              <Link
-                key={result._id}
-                to={`/search-results/${result._id}`}
-                onClick={() =>
-                  setLiveSearchResults({
-                    categoryResults: [],
-                    nameResults: [],
-                  })
-                }
-              >
-                {result.name}
-              </Link>
-            ))}
-            <h4>Products</h4>
-            {liveSearchResults.nameResults.map((result) => (
-              <Link
-                key={result._id}
-                to={`/search-results/${result._id}`}
-                onClick={() =>
-                  setLiveSearchResults({
-                    categoryResults: [],
-                    nameResults: [],
-                  })
-                }
-              >
-                {result.name}
-              </Link>
-            ))}
-          </div>
-        ))}
+      {(liveSearchResults.categoryResults.length > 0 ||
+        liveSearchResults.nameResults.length > 0) && (
+        <div className="dropdown-content flex-row" ref={dropdownRef}>
+          {isLoading && <li>Loading...</li>}
+          <h4>Categories</h4>
+          {liveSearchResults.categoryResults.slice(0, 6).map((result) => (
+            <Link
+              key={result._id}
+              to={`/search-results/${result._id}`}
+              onClick={() =>
+                setLiveSearchResults({
+                  categoryResults: [],
+                  nameResults: [],
+                })
+              }
+            >
+              {result.name}
+            </Link>
+          ))}
+          <h4>Products</h4>
+          {liveSearchResults.nameResults.slice(0, 6).map((result) => (
+            <Link
+              key={result._id}
+              to={`/product/${result._id}`}
+              onClick={() =>
+                setLiveSearchResults({
+                  categoryResults: [],
+                  nameResults: [],
+                })
+              }
+            >
+              {result.name}
+            </Link>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

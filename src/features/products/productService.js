@@ -16,6 +16,11 @@ const getProducts = async () => {
   return response.data;
 };
 
+const getProduct = async (id) => {
+  const response = await apiClient.get(`${API_URL}?id=${id}`);
+  return response.data;
+};
+
 const deleteProduct = async (id) => {
   const response = await apiClient.delete(API_URL + id);
   return response.data;
@@ -37,5 +42,6 @@ const productService = {
   createProduct,
   getProducts,
   deleteProduct,
+  getProduct,
 };
 export default productService;

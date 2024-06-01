@@ -9,6 +9,7 @@ import ProductItem from "./ProductItem";
 import Home from "./Home";
 import SearchBar from "./SearchBar";
 import SearchResults from "./SearchResults";
+import ProductPage from "./ProductPage";
 export {
   Home,
   Dashboard,
@@ -21,4 +22,5 @@ export {
   Spinner,
   SearchBar,
   SearchResults,
+  ProductPage,
 };

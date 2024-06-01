@@ -10,6 +10,7 @@ import {
   ProductForm,
   Home,
   SearchResults,
+  ProductPage,
 } from "./components";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/ReactToastify.css";
@@ -30,6 +31,7 @@ function App() {
           path="/search-results/:category_id"
           element={<SearchResults />}
         />
+        <Route path="/product/:id" element={<ProductPage />} />
       </Routes>
       <ToastContainer />
     </div>
