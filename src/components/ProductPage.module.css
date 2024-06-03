@@ -1,0 +1,113 @@
+.container {
+    margin: 0 auto;
+}
+
+.productDetailsContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.coverImageContainer {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    border-radius: 8px;
+    background-color: #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.coverImage {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.imageContainer {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.thumbnailContainer {
+    display: flex;
+    flex-direction: column;
+    border-radius: 4px;
+    height: 400px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    gap: 8px;
+}
+
+/* Custom scrollbar styles for WebKit-based browsers */
+.thumbnailContainer::-webkit-scrollbar {
+    width: 4px;
+}
+
+.thumbnailContainer::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.thumbnailContainer::-webkit-scrollbar-thumb {
+    background: #a7a7a7;
+    border-radius: 100px;
+}
+
+.thumbnailContainer::-webkit-scrollbar-thumb:hover {
+    background: #929292;
+}
+
+.thumbnail {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.details {
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+.purchaseSection {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.price {
+    font-size: 1.5rem;
+    color: #b12704;
+    margin-bottom: 10px;
+}
+
+.addToCartButton {
+    background-color: #ffa41c;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 10px;
+}
+
+.addToCartButton:hover {
+    background-color: #f08804;
+}

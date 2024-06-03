@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getResultProducts, reset } from "../features/search/searchSlice";
 import { useParams } from "react-router-dom";
 import { Spinner, ProductItem } from "./index";
+import styles from "./SearchResults.module.css";
 
 function SearchResults() {
   const { category_id } = useParams();
@@ -19,7 +20,8 @@ function SearchResults() {
   return isLoading ? (
     <Spinner />
   ) : (
-    <>
+    <div className={styles.gridContainer}>
+      <div>Filtering params</div>
       <section className="container">
         {resultProducts.length > 0 && (
           <div className="goals">
@@ -36,7 +38,7 @@ function SearchResults() {
           </div>
         )}
       </section>
-    </>
+    </div>
   );
 }
 

@@ -16,7 +16,7 @@ function SearchBar() {
   const handleSearchChange = async (e) => {
     const query = e.target.value;
 
-    if (query.trim() === "") {
+    if (query.trim() === "" || query === "") {
       setLiveSearchResults({
         categoryResults: [],
         nameResults: [],
