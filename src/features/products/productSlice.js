@@ -7,6 +7,7 @@ const initialState = {
   subCategories: [],
   isError: false,
   isSuccess: false,
+  isCreateProductSuccess: false,
   isLoading: false,
   message: "",
 };
@@ -109,7 +110,7 @@ export const productSlice = createSlice({
       })
       .addCase(createProduct.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.isSuccess = true;
+        state.isCreateProductSuccess = true;
         state.products.push(action.payload);
       })
       .addCase(createProduct.rejected, (state, action) => {

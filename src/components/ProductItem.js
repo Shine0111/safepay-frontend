@@ -7,7 +7,7 @@ function ProductItem({ product, onDelete }) {
   return (
     <div className="product-card">
       <div className="product-image-container">
-        {product.images.length > 0 ? (
+        {product.images ? (
           <img
             src={product.images[0]}
             alt="Product visuals"
