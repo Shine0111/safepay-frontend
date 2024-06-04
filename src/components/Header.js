@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout, reset } from "../features/auth/authSlice";
 import SearchBar from "./SearchBar";
+import { FaCartShopping } from "react-icons/fa6";
 
 function Header() {
   const navigate = useNavigate();
@@ -50,6 +51,12 @@ function Header() {
               <Link to="/register">
                 <FaUser /> Register
               </Link>
+              <li>
+                {/* Logged in user only, For now */}
+                <Link to="/cart">
+                  <FaCartShopping />
+                </Link>
+              </li>
             </li>
           </>
         )}

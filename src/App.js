@@ -14,6 +14,7 @@ import {
 } from "./components";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/ReactToastify.css";
+import CartPage from "./components/CartPage";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           element={<SearchResults />}
         />
         <Route path="/product/:id" element={<ProductPage />} />
+        <Route path="/cart" element={<CartPage />} />
       </Routes>
       <ToastContainer />
     </div>
