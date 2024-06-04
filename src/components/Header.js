@@ -51,12 +51,12 @@ function Header() {
               <Link to="/register">
                 <FaUser /> Register
               </Link>
-              <li>
-                {/* Logged in user only, For now */}
-                <Link to="/cart">
-                  <FaCartShopping />
-                </Link>
-              </li>
+            </li>
+            <li>
+              {/* Logged in user only, For now */}
+              <Link to="/cart">
+                <FaCartShopping />
+              </Link>
             </li>
           </>
         )}

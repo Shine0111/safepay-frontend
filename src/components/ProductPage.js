@@ -1,21 +1,26 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import productService from "../features/products/productService";
 import Spinner from "./Spinner";
 import styles from "./ProductPage.module.css";
+// import cartService from "../features/cart/cartService";
 
 function ProductPage() {
   const [product, setProduct] = useState(null);
+  const [productSKU, setProductSKU] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const { id } = useParams();
   const [selectedImage, setSelectedImage] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
+        setIsLoading(true);
         const fetchedProduct = await productService.getProduct(id);
-        setProduct(fetchedProduct);
-        setSelectedImage(fetchedProduct.images[0]);
+        setProductSKU(fetchedProduct.productSKU);
+        setProduct(fetchedProduct.product);
+        setSelectedImage(fetchedProduct.product.images[0]);
       } catch (error) {
         console.error("Error fetching the product", error);
       } finally {
@@ -33,6 +38,15 @@ function ProductPage() {
   if (!product) {
     return <p>Product not found!</p>;
   }
+  const handleAddToCart = async () => {
+    try {
+      // const response = await cartService.addToCart(product._id);
+    } catch (error) {
+      console.error("Error adding item to cart:", error);
+    } finally {
+      navigate("/cart");
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -64,9 +78,14 @@ function ProductPage() {
           <h2>Summary</h2>
           <p>{product.summary}</p>
           <div className={styles.purchaseSection}>
-            <div className={styles.price}>$99.99</div>{" "}
+            <div className={styles.price}>${productSKU[0].price}</div>{" "}
             {/* Example static price */}
-            <button className={styles.addToCartButton}>Add to Cart</button>
+            <button
+              className={styles.addToCartButton}
+              onClick={handleAddToCart}
+            >
+              Add to Cart
+            </button>
           </div>
         </div>
       </div>
