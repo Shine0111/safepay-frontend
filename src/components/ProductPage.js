@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import productService from "../features/products/productService";
 import Spinner from "./Spinner";
 import styles from "./ProductPage.module.css";
-// import cartService from "../features/cart/cartService";
+import cartService from "../features/cart/cartService";
 
 function ProductPage() {
   const [product, setProduct] = useState(null);
@@ -40,7 +40,12 @@ function ProductPage() {
   }
   const handleAddToCart = async () => {
     try {
-      // const response = await cartService.addToCart(product._id);
+      const response = await cartService.addToCart(
+        product._id,
+        productSKU[0]._id,
+        productSKU[0].quantity
+      );
+      console.log(response.data);
     } catch (error) {
       console.error("Error adding item to cart:", error);
     } finally {
@@ -79,7 +84,6 @@ function ProductPage() {
           <p>{product.summary}</p>
           <div className={styles.purchaseSection}>
             <div className={styles.price}>${productSKU[0].price}</div>{" "}
-            {/* Example static price */}
             <button
               className={styles.addToCartButton}
               onClick={handleAddToCart}

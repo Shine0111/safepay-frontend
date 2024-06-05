@@ -3,7 +3,7 @@ import apiClient from "../../services/api-client";
 const API_URL = "/api/cart/";
 
 const addToCart = async (productId, skuId, quantity) => {
-  const response = await apiClient.post(API_URL, {
+  const response = await apiClient.post(API_URL + "add", {
     productId,
     skuId,
     quantity,
