@@ -43,8 +43,9 @@ function ProductPage() {
       const response = await cartService.addToCart(
         product._id,
         productSKU[0]._id,
-        productSKU[0].quantity
+        1
       );
+      // productSKU[0].quantity
       console.log(response);
     } catch (error) {
       console.error("Error adding item to cart:", error);
