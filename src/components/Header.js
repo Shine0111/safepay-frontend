@@ -38,6 +38,12 @@ function Header() {
                 Dashboard
               </button>
             </li>
+            <li>
+              {/* Logged in user only, For now */}
+              <Link to="/cart">
+                <FaCartShopping />
+              </Link>
+            </li>
           </>
         ) : (
           <>
@@ -50,12 +56,6 @@ function Header() {
             <li>
               <Link to="/register">
                 <FaUser /> Register
-              </Link>
-            </li>
-            <li>
-              {/* Logged in user only, For now */}
-              <Link to="/cart">
-                <FaCartShopping />
               </Link>
             </li>
           </>

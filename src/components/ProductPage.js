@@ -45,7 +45,7 @@ function ProductPage() {
         productSKU[0]._id,
         productSKU[0].quantity
       );
-      console.log(response.data);
+      console.log(response);
     } catch (error) {
       console.error("Error adding item to cart:", error);
     } finally {
