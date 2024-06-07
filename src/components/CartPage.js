@@ -18,16 +18,20 @@ const CartPage = () => {
     <div className={styles.container}>
       <h1>Shopping Cart</h1>
       <div className={styles.itemsAndSummaryContainer}>
-        <div className={styles.cartItems}>
-          {cart.cartItems.map((cartItem) => (
-            <CartItem key={cartItem._id} cartItem={cartItem} />
-          ))}
-        </div>
-        <div className={styles.cartSummary}>
-          {/* summary component here */}
-          {/* This part can include total price, checkout button, etc. */}
-          <CartSummary total={cart.cart.total} />
-        </div>
+        {cart && (
+          <>
+            <div className={styles.cartItems}>
+              {cart.cartItems.map((cartItem) => (
+                <CartItem key={cartItem._id} cartItem={cartItem} />
+              ))}
+            </div>
+            <div className={styles.cartSummary}>
+              {/* summary component here */}
+              {/* This part can include total price, checkout button, etc. */}
+              <CartSummary total={cart.cart.total} />
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

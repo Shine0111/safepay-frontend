@@ -6,6 +6,7 @@ const CartSummary = ({ total }) => {
     <div className={styles.cartSummary}>
       <h2>Summary</h2>
       <div>Total: ${total}</div>
+      <button className="btn">Checkout, coming soon.</button>
     </div>
   );
 };
