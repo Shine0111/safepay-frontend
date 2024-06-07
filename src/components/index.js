@@ -10,6 +10,8 @@ import Home from "./Home";
 import SearchBar from "./SearchBar";
 import SearchResults from "./SearchResults";
 import ProductPage from "./ProductPage";
+import CartItem from "./CartItem";
+import CartSummary from "./CartSummary";
 export {
   Home,
   Dashboard,
@@ -23,4 +25,6 @@ export {
   SearchBar,
   SearchResults,
   ProductPage,
+  CartItem,
+  CartSummary,
 };
