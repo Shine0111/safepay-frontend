@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./CartItem.module.css";
 
-const CartItem = ({ cartItem }) => {
+const CartItem = ({ cartItem, onClick }) => {
   const { product_id, products_sku_id, quantity } = cartItem;
   const { name, description, images, user } = product_id;
 
@@ -27,7 +27,7 @@ const CartItem = ({ cartItem }) => {
           <p>Price: ${products_sku_id.price}</p>
         </div>
       </div>
-      <div className={styles.removeContainer}>
+      <div className={styles.removeContainer} onClick={onClick}>
         <p>Remove item</p>
       </div>
     </div>

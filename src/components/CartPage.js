@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getCart } from "../features/cart/cartSlice";
+import { getCart, removeCartItem } from "../features/cart/cartSlice";
 import styles from "./CartPage.module.css";
 import { CartItem, Spinner, CartSummary } from "./index";
 
@@ -22,7 +22,14 @@ const CartPage = () => {
           <>
             <div className={styles.cartItems}>
               {cart.cartItems.map((cartItem) => (
-                <CartItem key={cartItem._id} cartItem={cartItem} />
+                <CartItem
+                  key={cartItem._id}
+                  cartItem={cartItem}
+                  onClick={() => {
+                    dispatch(removeCartItem(cartItem._id));
+                    dispatch(getCart());
+                  }}
+                />
               ))}
             </div>
             <div className={styles.cartSummary}>

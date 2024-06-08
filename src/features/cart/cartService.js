@@ -22,7 +22,7 @@ const updateCartItem = async (itemId, quantity) => {
 };
 
 const removeCartItem = async (itemId) => {
-  const response = await apiClient.delete(`${API_URL}?itemId=${itemId}`);
+  const response = await apiClient.delete(`${API_URL}remove/${itemId}`);
   return response.data;
 };
 
