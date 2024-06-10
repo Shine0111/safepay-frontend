@@ -187,6 +187,7 @@ function ProductForm() {
               name="subCategory"
               value={product.subCategory}
               onChange={handleSubCategoryChange}
+              required
             >
               <option>Select a category</option>
               {subCategories.map((subCategory) => (

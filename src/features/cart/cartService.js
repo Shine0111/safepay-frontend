@@ -16,13 +16,15 @@ const getCart = async () => {
   return response.data;
 };
 
-const updateCartItem = async (itemId, quantity) => {
-  const response = await apiClient.put(`${API_URL}?itemId=${itemId}`, quantity);
+const removeCartItem = async (itemId) => {
+  const response = await apiClient.delete(`${API_URL}remove/${itemId}`);
   return response.data;
 };
 
-const removeCartItem = async (itemId) => {
-  const response = await apiClient.delete(`${API_URL}remove/${itemId}`);
+const updateCartItem = async (itemId, quantity) => {
+  const response = await apiClient.put(`${API_URL}update/${itemId}`, {
+    quantity,
+  });
   return response.data;
 };
 
