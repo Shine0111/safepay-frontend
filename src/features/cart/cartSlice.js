@@ -65,7 +65,7 @@ export const cartSlice = createSlice({
       .addCase(removeCartItem.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.cart = state.cart.cart.cartItems.filter(
+        state.cart.cartItems = state.cart.cartItems.filter(
           (item) => item._id !== action.payload
         );
       })

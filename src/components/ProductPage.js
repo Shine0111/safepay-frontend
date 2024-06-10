@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import productService from "../features/products/productService";
 import Spinner from "./Spinner";
 import styles from "./ProductPage.module.css";
 import cartService from "../features/cart/cartService";
+import { toast } from "react-toastify";
 
 function ProductPage() {
   const [product, setProduct] = useState(null);
   const [productSKU, setProductSKU] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isAddingToCart, setIsAddingToCart] = useState(false);
   const { id } = useParams();
   const [selectedImage, setSelectedImage] = useState(null);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -40,6 +41,7 @@ function ProductPage() {
   }
   const handleAddToCart = async () => {
     try {
+      setIsAddingToCart(true);
       const response = await cartService.addToCart(
         product._id,
         productSKU[0]._id,
@@ -50,7 +52,10 @@ function ProductPage() {
     } catch (error) {
       console.error("Error adding item to cart:", error);
     } finally {
-      navigate("/cart");
+      setIsAddingToCart(false);
+      toast.success("Item added to cart", {
+        autoClose: 1000,
+      });
     }
   };
 
@@ -89,7 +94,11 @@ function ProductPage() {
               className={styles.addToCartButton}
               onClick={handleAddToCart}
             >
-              Add to Cart
+              {isAddingToCart ? (
+                <div className="loadingSpinner"></div>
+              ) : (
+                <p>Add to Cart</p>
+              )}
             </button>
           </div>
         </div>
