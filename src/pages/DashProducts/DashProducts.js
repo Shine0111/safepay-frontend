@@ -29,8 +29,8 @@ const DashProducts = () => {
   };
   return (
     <div>
-      {productFormVisible && <div onClick={resetRoute}>Back</div>}
       <h1>Products</h1>
+      {productFormVisible && <button onClick={resetRoute}>Back</button>}
       {!productFormVisible && (
         <button onClick={goToProductForm}>Add a new product</button>
       )}

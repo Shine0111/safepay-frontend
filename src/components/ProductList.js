@@ -52,7 +52,14 @@ function ProductList() {
           )}
         </section>
       )}
-      {isProductUpdateVisible && <ProductUpdate product={productToUpdate} />}
+      {isProductUpdateVisible && (
+        <ProductUpdate
+          product={productToUpdate}
+          onBack={() => {
+            setIsProductUpdateVisible(false);
+          }}
+        />
+      )}
     </>
   );
 }
