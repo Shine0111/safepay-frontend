@@ -49,10 +49,7 @@ const Dashboard = ({ children }) => {
             </button>
           </li>
           <li onClick={width < SIDEBAR_BREAKPOINT ? toggleSidebar : null}>
-            <Link to="allProducts">All Products</Link>
-          </li>
-          <li onClick={width < SIDEBAR_BREAKPOINT ? toggleSidebar : null}>
-            <Link to="addProduct">Add Product</Link>
+            <Link to="allProducts">Products</Link>
           </li>
         </ul>
       </div>

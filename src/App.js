@@ -6,12 +6,12 @@ import {
   Header,
   Login,
   Register,
-  ProductList,
   ProductForm,
   Home,
   SearchResults,
   ProductPage,
 } from "./components";
+import { DashProducts } from "./pages";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/ReactToastify.css";
 import CartPage from "./components/CartPage";
@@ -23,7 +23,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/dashboard" element={<Dashboard />}>
-          <Route path="allProducts" element={<ProductList />} />
+          <Route path="allProducts" element={<DashProducts />} />
           <Route path="addProduct" element={<ProductForm />} />
         </Route>
         <Route path="/login" element={<Login />} />

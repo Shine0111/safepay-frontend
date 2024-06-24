@@ -6,7 +6,6 @@ import {
 } from "../features/products/productSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
 import Spinner from "./Spinner";
 
 function ProductForm() {
@@ -28,7 +27,6 @@ function ProductForm() {
   });
   const { name, description, summary, images, subCategory, skuAttributes } =
     product;
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -110,8 +108,6 @@ function ProductForm() {
       });
     }
   };
-
-  if (isCreateProductSuccess) navigate("/dashboard/allProducts");
 
   return (
     <section className="form">
