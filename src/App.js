@@ -11,7 +11,7 @@ import {
   SearchResults,
   ProductPage,
 } from "./components";
-import { DashProducts } from "./pages";
+import DashProducts from "./pages/DashProducts/DashProducts";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/ReactToastify.css";
 import CartPage from "./components/CartPage";

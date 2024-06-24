@@ -6,6 +6,12 @@ const DashProducts = () => {
   const [productListVisible, setProductListVisible] = useState(true);
   const [productFormVisible, setProductFormVisible] = useState(false);
   const { isCreateProductSuccess } = useSelector((state) => state.products);
+
+  useEffect(() => {
+    setProductFormVisible(false);
+    setProductListVisible(true);
+  }, []);
+
   const goToProductForm = () => {
     setProductFormVisible(true);
     setProductListVisible(false);
@@ -17,10 +23,17 @@ const DashProducts = () => {
     }
   }, [isCreateProductSuccess]);
 
+  const resetRoute = () => {
+    setProductFormVisible(false);
+    setProductListVisible(true);
+  };
   return (
     <div>
+      {productFormVisible && <div onClick={resetRoute}>Back</div>}
       <h1>Products</h1>
-      <button onClick={goToProductForm}>Add a new product</button>
+      {!productFormVisible && (
+        <button onClick={goToProductForm}>Add a new product</button>
+      )}
       {productFormVisible && <ProductForm />}
       {productListVisible && <ProductList />}
     </div>

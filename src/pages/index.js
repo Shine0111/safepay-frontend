@@ -1,3 +1,3 @@
-import DashProducts from "./DashProducts/DashProducts";
-
-export { DashProducts };
+import DashProducts from "./dashProducts/dashProducts";
+import ProductUpdate from "./ProductUpdate/ProductUpdate";
+export { DashProducts, ProductUpdate };
