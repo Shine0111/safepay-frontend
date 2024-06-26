@@ -8,6 +8,7 @@ const initialState = {
   isError: false,
   isSuccess: false,
   isCreateProductSuccess: false,
+  isUpdateProductSuccess: false,
   isLoading: false,
   message: "",
 };
@@ -99,9 +100,9 @@ export const deleteProduct = createAsyncThunk(
 
 export const updateProduct = createAsyncThunk(
   "products/update",
-  async (product, thunkAPI) => {
+  async ({ id, ...updatedProductData }, thunkAPI) => {
     try {
-      return await productService.updateProduct(product);
+      return await productService.updateProduct(id, updatedProductData);
     } catch (error) {
       const message =
         (error.response &&
@@ -153,7 +154,7 @@ export const productSlice = createSlice({
       })
       .addCase(updateProduct.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.isSuccess = true;
+        state.isProductUpdateSuccess = true;
         state.message = action.payload.message;
       })
       .addCase(updateProduct.rejected, (state, action) => {

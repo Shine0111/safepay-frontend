@@ -36,11 +36,8 @@ const getProductSubCategories = async () => {
   return response.data;
 };
 
-const updateProduct = async (updatedProductData) => {
-  const response = await apiClient.put(
-    `${API_URL}?id=${updatedProductData._id}`,
-    updatedProductData
-  );
+const updateProduct = async (id, updatedProductData) => {
+  const response = await apiClient.put(`${API_URL}/${id}`, updatedProductData);
   return response.data;
 };
 

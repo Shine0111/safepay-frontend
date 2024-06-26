@@ -5,10 +5,9 @@ import {
   getProductCategories,
   getProductSubCategories,
 } from "../../features/products/productSlice";
-import { toast } from "react-toastify";
 
-const ProductUpdate = ({ product, onBack }) => {
-  const { isSuccess, subCategories, categories } = useSelector(
+const ProductUpdate = ({ product, onBack, onSuccess }) => {
+  const { isProductUpdateSuccess, subCategories, categories } = useSelector(
     (state) => state.products
   );
   const [updatedProduct, setUpdatedProduct] = useState({
@@ -41,12 +40,13 @@ const ProductUpdate = ({ product, onBack }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     dispatch(updateProduct({ id: product._id, ...updatedProduct }));
-    if (isSuccess) {
-      toast.success("Product updated!", {
-        autoClose: 2000,
-      });
-    }
   };
+
+  useEffect(() => {
+    if (isProductUpdateSuccess) {
+      onSuccess();
+    }
+  }, [isProductUpdateSuccess, onSuccess]);
 
   return (
     <section className="form">
