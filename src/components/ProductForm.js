@@ -9,9 +9,8 @@ import { toast } from "react-toastify";
 import Spinner from "./Spinner";
 
 function ProductForm() {
-  const { isLoading, isCreateProductSuccess, subCategories } = useSelector(
-    (state) => state.products
-  );
+  const { isLoading, isCreateProductSuccess, subCategories, categories } =
+    useSelector((state) => state.products);
   const [product, setProduct] = useState({
     name: "",
     description: "",
@@ -30,9 +29,13 @@ function ProductForm() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getProductCategories());
-    dispatch(getProductSubCategories());
-  }, [dispatch]);
+    if (!categories.length) {
+      dispatch(getProductCategories());
+    }
+    if (!subCategories.length) {
+      dispatch(getProductSubCategories());
+    }
+  }, [dispatch, categories.length, subCategories.length]);
 
   const handleNameChange = (e) => {
     setProduct((prevState) => ({

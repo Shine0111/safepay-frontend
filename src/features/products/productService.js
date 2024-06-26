@@ -36,6 +36,14 @@ const getProductSubCategories = async () => {
   return response.data;
 };
 
+const updateProduct = async (updatedProductData) => {
+  const response = await apiClient.put(
+    `${API_URL}?id=${updatedProductData._id}`,
+    updatedProductData
+  );
+  return response.data;
+};
+
 const productService = {
   getProductCategories,
   getProductSubCategories,
@@ -43,5 +51,6 @@ const productService = {
   getProducts,
   deleteProduct,
   getProduct,
+  updateProduct,
 };
 export default productService;
