@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import Spinner from "./Spinner";
 
-function ProductForm() {
+function ProductForm({ onSuccess }) {
   const { isLoading, isCreateProductSuccess, subCategories, categories } =
     useSelector((state) => state.products);
   const [product, setProduct] = useState({
@@ -105,12 +105,16 @@ function ProductForm() {
     }
 
     dispatch(createProduct(formData));
+  };
+
+  useEffect(() => {
     if (isCreateProductSuccess) {
       toast.success("Product created!", {
         autoClose: 2000,
       });
+      onSuccess();
     }
-  };
+  }, [isCreateProductSuccess, onSuccess]);
 
   return (
     <section className="form">

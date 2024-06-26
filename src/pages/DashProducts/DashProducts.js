@@ -34,7 +34,13 @@ const DashProducts = () => {
       {!productFormVisible && (
         <button onClick={goToProductForm}>Add a new product</button>
       )}
-      {productFormVisible && <ProductForm />}
+      {productFormVisible && (
+        <ProductForm
+          onSuccess={() => {
+            setProductFormVisible(false);
+          }}
+        />
+      )}
       {productListVisible && <ProductList />}
     </div>
   );
