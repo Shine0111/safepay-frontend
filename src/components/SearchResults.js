@@ -4,10 +4,12 @@ import { getResultProducts, reset } from "../features/search/searchSlice";
 import { useParams } from "react-router-dom";
 import { Spinner, ProductItem } from "./index";
 import styles from "./SearchResults.module.css";
+import { useNavigate } from "react-router-dom";
 
 function SearchResults() {
   const { category_id } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { resultProducts, isLoading, isError, message } = useSelector(
     (state) => state.search
   );
@@ -17,6 +19,11 @@ function SearchResults() {
     dispatch(getResultProducts(category_id));
     return () => dispatch(reset());
   }, [category_id, isError, message, dispatch]);
+
+  const handleProductClick = (product) => {
+    navigate(`/product/${product._id}`);
+  };
+
   return isLoading ? (
     <Spinner />
   ) : (
@@ -33,6 +40,7 @@ function SearchResults() {
                   onDelete={() => {
                     console.log("Can't delete this!");
                   }}
+                  onSuccess={handleProductClick(product)}
                 />
               ))}
           </div>
