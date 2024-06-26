@@ -8,12 +8,10 @@ import {
 import Spinner from "./Spinner";
 import ProductItem from "./ProductItem";
 import ProductUpdate from "../pages/ProductUpdate/ProductUpdate";
-import { toast } from "react-toastify";
 
 function ProductList() {
   const [isProductUpdateVisible, setIsProductUpdateVisible] = useState(false);
   const [productToUpdate, setProductToUpdate] = useState(null);
-  const [isAProductUpdated, setIsAProductUpdated] = useState(false);
   const dispatch = useDispatch();
   const { products, isLoading, isError, message } = useSelector(
     (state) => state.products
@@ -29,14 +27,6 @@ function ProductList() {
     setProductToUpdate(product);
     setIsProductUpdateVisible(true);
   };
-
-  useEffect(() => {
-    if (isAProductUpdated) {
-      toast.success("Product updated!", {
-        autoClose: 2000,
-      });
-    }
-  }, [isAProductUpdated]);
 
   return isLoading ? (
     <Spinner />
@@ -70,7 +60,6 @@ function ProductList() {
           }}
           onSuccess={() => {
             setIsProductUpdateVisible(false);
-            setIsAProductUpdated(true);
           }}
         />
       )}

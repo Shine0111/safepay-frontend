@@ -5,6 +5,7 @@ import {
   getProductCategories,
   getProductSubCategories,
 } from "../../features/products/productSlice";
+import { toast } from "react-toastify";
 
 const ProductUpdate = ({ product, onBack, onSuccess }) => {
   const { isProductUpdateSuccess, subCategories, categories } = useSelector(
@@ -44,6 +45,9 @@ const ProductUpdate = ({ product, onBack, onSuccess }) => {
 
   useEffect(() => {
     if (isProductUpdateSuccess) {
+      toast.success("Product updated!", {
+        autoClose: 2000,
+      });
       onSuccess();
     }
   }, [isProductUpdateSuccess, onSuccess]);
