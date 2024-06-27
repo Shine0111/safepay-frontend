@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./CartItem.module.css";
+import { useDispatch } from "react-redux";
+import { updateCartItem } from "../features/cart/cartSlice";
 
 const CartItem = ({ cartItem, onClick }) => {
-  const { product_id, products_sku_id, quantity } = cartItem;
+  const { product_id, products_sku_id, quantity, _id } = cartItem;
   const { name, description, images, user } = product_id;
+  const [selectedQuantity, setSelectedQuantity] = useState(quantity);
+  const dispatch = useDispatch();
+
+  const handleQuantityChange = (event) => {
+    setSelectedQuantity(event.target.value);
+    // You can call a function to update the cart on the server here if needed
+    dispatch(updateCartItem({ itemId: _id, quantity: selectedQuantity }));
+  };
 
   return (
     <div className={styles.container}>
@@ -21,7 +31,21 @@ const CartItem = ({ cartItem, onClick }) => {
           </div>
         </div>
         <div className={styles.quantity}>
-          <p>Quantity: {quantity}</p>
+          <label htmlFor="quantity">Quantity:</label>
+          <select
+            id="quantity"
+            value={selectedQuantity}
+            onChange={handleQuantityChange}
+          >
+            {Array.from(
+              { length: products_sku_id.quantity },
+              (_, i) => i + 1
+            ).map((qty) => (
+              <option key={qty} value={qty}>
+                {qty}
+              </option>
+            ))}
+          </select>
         </div>
         <div className={styles.price}>
           <p>Price: ${products_sku_id.price}</p>

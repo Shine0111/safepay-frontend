@@ -88,6 +88,7 @@ function ProductPage() {
           <p>{product.description}</p>
           <h2>Summary</h2>
           <p>{product.summary}</p>
+          <h3>Quantity: {productSKU[0].quantity}</h3>
           <div className={styles.purchaseSection}>
             <div className={styles.price}>${productSKU[0].price}</div>{" "}
             <button
