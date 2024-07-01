@@ -11,7 +11,7 @@ const CartItem = ({ cartItem, onClick }) => {
 
   const handleQuantityChange = (event) => {
     setSelectedQuantity(event.target.value);
-    // You can call a function to update the cart on the server here if needed
+    // function to update the cart on the server
     dispatch(updateCartItem({ itemId: _id, quantity: selectedQuantity }));
   };
 
@@ -32,6 +32,7 @@ const CartItem = ({ cartItem, onClick }) => {
         </div>
         <div className={styles.quantity}>
           <label htmlFor="quantity">Quantity:</label>
+          <p>{quantity}</p>
           <select
             id="quantity"
             value={selectedQuantity}
